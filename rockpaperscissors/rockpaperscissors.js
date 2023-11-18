@@ -1,74 +1,45 @@
-//function to randomize return of rock,paper,scissors for playing against computer
-let computerSelection=["rock","paper","scissors"];
+const computerSelection = getComputerChoice(); //global variable that uses function as reference
+const playerSelection='rock'; //used to test playRound function once
 
-//initialize empty variable for user input...
-//for single round in console, give playerSelection a value
-
-playerSelection;
-
-//randomize computerSelection of the array above
-function getComputerChoice(computerSelection){
-    return computerSelection[(Math.floor(Math.random ()* computerSelection.length))];
+//randomize rock,paper,scissors
+function getComputerChoice() {
+    const moves = ['rock', 'paper', 'scissors'];
+    return moves[Math.floor(Math.random() * moves.length)];
 }
 
-//single round game--to change move,give playerSelection a value before calling this function
-//another way to change move... edit parameter i.e. playerSelection='rock'
-
-function playRound(playerSelection,computerSelection){
+//single iteration function with game rules/conditions
+function playRound(playerSelection, computerSelection) {
     
-    console.log(`You chose ${playerSelection}`);
-    console.log(`Me:${playerSelection} | Computer:${getComputerChoice(computerSelection)}`);
-   
-    switch(getComputerChoice(computerSelection)){
-        case 'rock':
-            if(playerSelection=getComputerChoice(computerSelection)){
-                console.log ('tie')
-            }else if(playerSelection='scissors'){
-                console.log('rock beats scissors');
-            }else if(playerSelection='paper'){
-                console.log('paper beats rock');
-            }else{
-                console.log('invalid input');
-            }
-}
 
-    //return winner-loser-draw
-   
-}
+    if (playerSelection === 'rock' && computerSelection === 'paper') {
+        console.log('You lose. Paper beats rock.');
+    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        console.log('You win. Rock beats scissors.');
+    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        console.log('You win. Paper beats rock.');
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        console.log('You lose. Scissors beats paper.');
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        console.log('You win. Scissors beats paper.');
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        console.log('You lose. Rock beats scissors.');
+    } else if (playerSelection === computerSelection){
+        //tie game if both selections are the same
+        console.log('Tie.');  
+    } else {
+         playerSelection !== 'rock'||'paper'||'scissors'
+        //null and undefined exception msg
+        console.log('Invalid entry.'); 
 
-
-
-
-//multi round game
-function game(){
-    
-    for (let i=1;i<=5;i++){
-        let playerSelection= prompt('Rock,Paper,Scissors?');
-        console.log('---------------');
-        console.log(`Round ${i}`);
-        console.log(playRound(playerSelection,computerSelection));
-        //return winner
-        console.log(`Round ${i} winner is me`);
-        console.log('---------------');
     }
-    return;
+        return `You:${playerSelection} | Computer:${computerSelection}`;
 }
-
-
-//rock-rock :tie
-//paper-paper:tie
-//scissors-scissors:tie
-//if strings match each other, conclude to a tie
-
-
-//rock-paper:paper wins
-//paper-rock:paper wins
-//for cpu vs player, if rock against paper, conclude paper wins
-
-//rock-scissors: rock wins
-//scissors-rock:rock wins
-//for cpu vs player, if rock against scissors, conclude rock wins
-
-//paper-scissors:scissors wins
-//scissors-paper:scissors wins
-//for cpu vs player, if scissors against paper, conclude scissors wins
+//5 iteration game function using for loop
+function game() {
+    for (i = 1; i <= 5; i++) {
+        const playerSelection = prompt('Rock,Paper or Scissors?').toLowerCase();  
+        const computerSelection = getComputerChoice();
+        console.log(`Round ${i}`);
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
