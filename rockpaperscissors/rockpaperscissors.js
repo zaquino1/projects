@@ -1,6 +1,3 @@
-const computerSelection = getComputerChoice(); //global variable that uses function as reference
-const playerSelection='rock'; //used to test playRound function once
-
 //randomize rock,paper,scissors
 function getComputerChoice() {
     const moves = ['rock', 'paper', 'scissors'];
@@ -41,5 +38,10 @@ function game() {
         const computerSelection = getComputerChoice();
         console.log(`Round ${i}`);
         console.log(playRound(playerSelection, computerSelection));
+        
+    } if(i=5)
+    
+    {
+        console.log('Game Over');       
     }
 }
